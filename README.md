@@ -1,1 +1,1 @@
-# Flask
+Educational project. Blog
