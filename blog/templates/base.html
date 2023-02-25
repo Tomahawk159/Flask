@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %} Base {% endblock  %}
+    </title>
+    {% block css %}{% endblock  %}
+  </head>
+  <body>
+      {% block body %} Hello base {% endblock  %}
+      {% block js %}{% endblock %}
+  </body>
+</html>
