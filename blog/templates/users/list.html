@@ -6,9 +6,9 @@
     <div class="col">
       <h1>Users</h1>
         <ul>
-          {% for user_id in users %}
+          {% for user in users %}
           <li>
-            <a href="{{ url_for('user.get_user', pk=user_id) }}">{{ users[user_id]}}</a>
+            <a href="{{ url_for('user.get_user', pk=user.id) }}">{{ user.user_name }}</a>
           </li>
           {% endfor %}
         </ul>
