@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from werkzeug.exceptions import NotFound
 
-article = Blueprint('article', __name__, url_prefix='/articles',
+article = Blueprint('article', __name__, url_prefix='/',
                     static_folder='../static')
 
 ARTICLES = {

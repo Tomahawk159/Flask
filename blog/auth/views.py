@@ -37,14 +37,14 @@ def login():
     if user is None:
         return render_template("auth/login.html", error=f"no user {user_name!r} found")
     login_user(user)
-    return redirect(url_for("index"))
+    return redirect(url_for("article.article_list"))
 
 
 @auth.route("/logout/", endpoint="logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("index"))
+    return redirect(url_for("article.article_list"))
 
 
 @auth.route("/secret/")
