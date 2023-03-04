@@ -27,3 +27,11 @@ def create_users():
     db.session.add(admin)
     db.session.add(james)
     db.session.commit()
+
+
+if __name__ == "__main__":
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=True,
+    )

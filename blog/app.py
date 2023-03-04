@@ -1,9 +1,11 @@
-from flask import Flask, render_template
+import os
+
+from flask import Flask
+from flask_migrate import Migrate
+
 from blog.users.views import user
 from blog.articles.views import article
-from blog.auth.views import auth
 from blog.models.database import db
-import os
 from blog.auth.views import login_manager, auth
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -12,12 +14,13 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 def create_app() -> Flask:
     app = Flask(__name__)
 
-    app.config["SECRET_KEY"] = "abcdefg123456"
-    app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///' + \
-        os.path.join(basedir, 'blog.db')
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    cfg_name = os.environ.get("CONFIG_NAME") or "ProductionConfig"
+    cfg_name = 'BaseConfig'
+    app.config.from_object(f"blog.configs.{cfg_name}")
 
     db.init_app(app)
+
+    migrate = Migrate(app, db)
     login_manager.init_app(app)
     register_blueprints(app)
 
