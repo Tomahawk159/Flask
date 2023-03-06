@@ -7,6 +7,8 @@ from blog.users.views import user
 from blog.articles.views import article
 from blog.models.database import db
 from blog.auth.views import login_manager, auth
+from blog.security import flask_bcrypt
+
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -18,6 +20,7 @@ def create_app() -> Flask:
     cfg_name = 'BaseConfig'
     app.config.from_object(f"blog.configs.{cfg_name}")
 
+    flask_bcrypt.init_app(app)
     db.init_app(app)
 
     migrate = Migrate(app, db)
