@@ -1,19 +1,23 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-      <a class="navbar-brand" href="{{ url_for('article.article_list') }}">Blog</a>
+      <a class="navbar-brand" href="{{ url_for('article.list') }}">Blog</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('user.user_list') }}">Users</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('article.article_list') }}">Articles</a>
-              </li>
-          </ul>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% for (endpoint, label) in [
+            ('user.user_list', 'Users'),
+            ('article.list', 'Articles'),
+            ('author.author_list', 'Authors'),
+            ] %}
+            <a href="{{ url_for(endpoint) }}" class="nav-link {% if request.endpoint == endpoint %} active {% endif %}">
+            {{ label }}
+        </a>
+        {% endfor %}
+        </ul>   
+            
           <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
@@ -25,7 +29,7 @@
                 {% for (endpoint, label) in [('auth.login', 'Login'), ('auth.register',
                 'Register')] %}
                 <a href="{{ url_for(endpoint) }}"
-                    class="nav-link {% if request.endpoint == endpoint -%}active{%- endif %}">
+                    class="nav-link {% if request.endpoint == endpoint %} active {% endif %}">
                     {{ label }}
                 </a>
                 {% endfor %}
