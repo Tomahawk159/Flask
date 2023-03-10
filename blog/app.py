@@ -8,6 +8,7 @@ from blog.articles.views import article
 from blog.models.database import db
 from blog.auth.views import login_manager, auth
 from blog.security import flask_bcrypt
+from blog.authors.views import author
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -17,7 +18,7 @@ def create_app() -> Flask:
     app = Flask(__name__)
 
     cfg_name = os.environ.get("CONFIG_NAME") or "ProductionConfig"
-    cfg_name = 'BaseConfig'
+    cfg_name = "BaseConfig"
     app.config.from_object(f"blog.configs.{cfg_name}")
 
     flask_bcrypt.init_app(app)
@@ -34,3 +35,4 @@ def register_blueprints(app: Flask):
     app.register_blueprint(user)
     app.register_blueprint(article)
     app.register_blueprint(auth)
+    app.register_blueprint(author)
