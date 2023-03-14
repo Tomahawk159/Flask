@@ -9,6 +9,7 @@ from blog.models.database import db
 from blog.auth.views import login_manager, auth
 from blog.security import flask_bcrypt
 from blog.authors.views import author
+from blog.admin import admin
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -27,6 +28,7 @@ def create_app() -> Flask:
     migrate = Migrate(app, db)
     login_manager.init_app(app)
     register_blueprints(app)
+    admin.init_app(app)
 
     return app
 

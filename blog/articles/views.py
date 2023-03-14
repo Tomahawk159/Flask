@@ -8,7 +8,7 @@ from blog.models.database import db
 from blog.models import Author, Article, Tag
 from blog.forms.article import CreateArticleForm
 
-article = Blueprint("article", __name__, url_prefix="/", static_folder="../static")
+article = Blueprint("article_view", __name__, url_prefix="/", static_folder="../static")
 
 
 @article.route("/", endpoint="list")
@@ -60,5 +60,5 @@ def create_article():
             current_app.logger.exception("Could not create a new article!")
             error = "Could not create article!"
         else:
-            return redirect(url_for("article.details", article_id=article.id))
+            return redirect(url_for("article_view.details", article_id=article.id))
     return render_template("articles/create.html", form=form, error=error)

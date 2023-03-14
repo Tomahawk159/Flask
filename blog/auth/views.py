@@ -52,7 +52,7 @@ def register():
         else:
             current_app.logger.info("Created user %s", user)
             login_user(user)
-            return redirect(url_for("article.list"))
+            return redirect(url_for("article_view.list"))
 
     return render_template("auth/register.html", form=form, error=error)
 
@@ -90,7 +90,7 @@ def login():
                 "auth/login.html", form=form, error="invalid user_name or password"
             )
         login_user(user)
-        return redirect(url_for("article.list"))
+        return redirect(url_for("article_view.list"))
     return render_template("auth/login.html", form=form)
 
 
@@ -105,7 +105,7 @@ def login_as():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("article.list"))
+    return redirect(url_for("article_view.list"))
 
 
 @auth.route("/secret/")

@@ -9,14 +9,14 @@
         <ul>
         {% for article in articles %}
         <li>
-        <a href="{{ url_for('article.details', article_id=article.id) }}">{{
+        <a href="{{ url_for('article_view.details', article_id=article.id) }}">{{
         article.title }}</a>
         by {{ article.author.user.user_name }}
         </li>
         {% endfor %}
         </ul>
         <hr>
-        <a href="{{ url_for('article.create') }}">Create new</a>
+        <a href="{{ url_for('article_view.create') }}">Create new</a>
         </div>
         
     </div>

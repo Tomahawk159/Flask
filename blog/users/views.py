@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from blog.models.users import User
 
-user = Blueprint("user", __name__, url_prefix="/users", static_folder="../static")
+user = Blueprint("user_view", __name__, url_prefix="/users", static_folder="../static")
 
 
 @user.route("/")
